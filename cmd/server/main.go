@@ -1,23 +1,13 @@
 package main
 
 import (
-	"html/template"
+	"ajaycalicut17/expense-management-go/internal/handlers"
 	"net/http"
 )
 
-func loginHandler(w http.ResponseWriter, r *http.Request) {
-
-	tmpl := template.Must(template.ParseGlob("templates/**/*.html"))
-
-	err := tmpl.ExecuteTemplate(w, "login/index", nil)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
 func main() {
 
-	http.HandleFunc("/", loginHandler)
+	http.HandleFunc("/", handlers.LoginHandler)
 
 	http.ListenAndServe(":8080", nil)
 }
