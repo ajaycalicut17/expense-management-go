@@ -5,16 +5,19 @@ import (
 	"net/http"
 )
 
-func main() {
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+
 	tmpl := template.Must(template.ParseGlob("templates/**/*.html"))
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	err := tmpl.ExecuteTemplate(w, "login/index", nil)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
 
-		err := tmpl.ExecuteTemplate(w, "login/index", nil)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-	})
+func main() {
+
+	http.HandleFunc("/", loginHandler)
 
 	http.ListenAndServe(":8080", nil)
 }
