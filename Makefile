@@ -4,15 +4,15 @@ all: fmt vet tidy
 
 run:
 	@echo "Running..."
-	go run main.go
+	go run ./cmd/server/main.go
 
 fmt:
 	@echo "Formatting..."
-	go fmt .
+	go fmt ./...
 
 vet:
 	@echo "Linting..."
-	go vet .
+	go vet ./...
 
 tidy:
 	@echo "Tidying Go modules..."
