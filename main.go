@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"net/http"
+)
 
 func main() {
-	fmt.Println("expense-management-go")
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "views/login/index.html")
+	})
+
+	http.ListenAndServe(":8080", nil)
 }
