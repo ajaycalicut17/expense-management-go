@@ -1,6 +1,6 @@
 .PHONY: all run build clean fmt vet tidy
 
-all: fmt vet tidy build
+all: fmt vet tidy clean
 
 run:
 	@echo "Running..."

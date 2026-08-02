@@ -16,8 +16,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="/static/css/style.css">
 
+    <!-- TODO: remove script, if not needed -->
     <!-- Scripts -->
-    <script src="/static/js/main.js" defer></script>
+    <!-- <script src="/static/js/main.js" defer></script> -->
 </head>
 
 <body>
@@ -28,7 +29,7 @@
 
                 <!-- TODO: Validation Errors -->
 
-                <form method="POST" action="http://localhost/login">
+                <form method="POST" action="login">
                     <!-- TODO: CSRF TOKEN -->
                     <input type="hidden" name="_token" value="evk2A7LWaBMwOVLSeIiQeYz8OMqe0jHN7xmdkuxc"
                         autocomplete="off">
@@ -58,7 +59,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="http://localhost/register">
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="register">
                             Register
                         </a>
 
