@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func IndexLoginHandler(w http.ResponseWriter, r *http.Request) {
+func IndexLogin(w http.ResponseWriter, r *http.Request) {
 
 	tmpl := template.Must(template.ParseFiles("internal/templates/login/index.html"))
 
@@ -22,6 +22,6 @@ func IndexLoginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func LoginHandler(w http.ResponseWriter, r *http.Request) {
+func Login(w http.ResponseWriter, r *http.Request) {
 	// TODO: login
 }

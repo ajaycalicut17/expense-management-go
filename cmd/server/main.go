@@ -10,9 +10,9 @@ func main() {
 
 	http.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	http.HandleFunc("GET /", handlers.IndexLoginHandler)
+	http.HandleFunc("GET /", handlers.IndexLogin)
 
-	http.HandleFunc("POST /", handlers.LoginHandler)
+	http.HandleFunc("POST /", handlers.Login)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
