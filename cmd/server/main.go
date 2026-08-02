@@ -8,9 +8,11 @@ import (
 
 func main() {
 
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	http.HandleFunc("/", handlers.LoginHandler)
+	http.HandleFunc("GET /", handlers.IndexLoginHandler)
+
+	http.HandleFunc("POST /", handlers.LoginHandler)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
