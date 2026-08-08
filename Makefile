@@ -1,6 +1,8 @@
-.PHONY: all run build clean fmt vet tidy
+.PHONY: all run build clean fmt vet tidy tidy-tools migrate migrate-down migrate-reset
 
-all: fmt vet tidy run
+TOOLS_MODFILE = -modfile=tools/go.mod
+
+all: fmt vet tidy tidy-tools migrate run
 
 run:
 	@echo "Running..."
@@ -27,16 +29,20 @@ tidy:
 	@echo "Tidying Go modules..."
 	@go mod tidy
 
+tidy-tools:
+	@echo "Tidying tools Go modules..."
+	@go mod tidy $(TOOLS_MODFILE)
+
 migrate:
 	@echo "Validate, fix and migrate..."
-	@go tool goose validate
-	@go tool goose fix
-	@go tool goose up
+	@go tool $(TOOLS_MODFILE) goose validate
+	@go tool $(TOOLS_MODFILE) goose fix
+	@go tool $(TOOLS_MODFILE) goose up
 
 migrate-down:
 	@echo "Rolling back last migration..."
-	@go tool goose down
+	@go tool $(TOOLS_MODFILE) goose down
 
 migrate-reset:
 	@echo "Resetting all migrations..."
-	@go tool goose reset
+	@go tool $(TOOLS_MODFILE) goose reset
