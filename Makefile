@@ -1,5 +1,3 @@
-GOOSE = go run github.com/pressly/goose/v3/cmd/goose@v3.27.3
-
 .PHONY: all run build clean fmt vet tidy
 
 all: fmt vet tidy run
@@ -31,14 +29,14 @@ tidy:
 
 migrate:
 	@echo "Validate, fix and migrate..."
-	@$(GOOSE) validate
-	@$(GOOSE) fix
-	@$(GOOSE) up
+	@go tool goose validate
+	@go tool goose fix
+	@go tool goose up
 
 migrate-down:
 	@echo "Rolling back last migration..."
-	@$(GOOSE) down
+	@go tool goose down
 
 migrate-reset:
 	@echo "Resetting all migrations..."
-	@$(GOOSE) reset
+	@go tool goose reset
