@@ -4,15 +4,28 @@ import (
 	"ajaycalicut17/expense-management-go/internal/handlers"
 	"log"
 	"net/http"
+	"time"
 )
 
 func main() {
 
-	http.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	mux := http.NewServeMux()
 
-	http.HandleFunc("GET /", handlers.IndexLogin)
+	server := &http.Server{
+		Addr:         ":8080",
+		Handler:      mux,
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  60 * time.Second,
+	}
 
-	http.HandleFunc("POST /", handlers.Login)
+	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	mux.HandleFunc("GET /", handlers.IndexLogin)
+
+	mux.HandleFunc("POST /", handlers.Login)
+
+	if err := server.ListenAndServe(); err != nil {
+		log.Fatalf("Server failed to start: %v", err)
+	}
 }
