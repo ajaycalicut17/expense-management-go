@@ -8,8 +8,8 @@ import (
 func IndexLogin(w http.ResponseWriter, r *http.Request) {
 
 	tmpl := template.Must(template.ParseFiles(
-		"internal/templates/layouts/base.html",
-		"internal/templates/pages/login/index.html",
+		"templates/layouts/base.html",
+		"templates/pages/login/index.html",
 	))
 
 	err := tmpl.ExecuteTemplate(w, "login/index", nil)
