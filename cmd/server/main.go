@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ajaycalicut17/expense-management-go/internal/config"
 	"ajaycalicut17/expense-management-go/internal/handlers"
 	"log"
 	"net/http"
@@ -9,10 +10,12 @@ import (
 
 func main() {
 
+	config := config.MustLoad()
+
 	mux := http.NewServeMux()
 
 	server := &http.Server{
-		Addr:         ":8080",
+		Addr:         ":" + config.Port,
 		Handler:      mux,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
