@@ -1,8 +1,8 @@
-.PHONY: all run build clean fmt vet tidy tidy-tools migrate migrate-down migrate-reset
+.PHONY: all run build clean fmt vet tidy tidy-tools migrate migrate-down migrate-reset air
 
 TOOLS_MODFILE = -modfile=tools/go.mod
 
-all: fmt vet tidy tidy-tools migrate run
+all: fmt vet tidy tidy-tools migrate
 
 run:
 	@echo "Running..."
@@ -46,3 +46,7 @@ migrate-down:
 migrate-reset:
 	@echo "Resetting all migrations..."
 	@go tool $(TOOLS_MODFILE) goose reset
+
+air:
+	@echo "Air Running..."
+	@go tool $(TOOLS_MODFILE) air -c tools/.air.toml

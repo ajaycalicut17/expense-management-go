@@ -9,6 +9,7 @@
 *.dylib
 bin/
 database/*.sqlite
+tmp
 
 # Test binary, built with `go test -c`
 *.test
