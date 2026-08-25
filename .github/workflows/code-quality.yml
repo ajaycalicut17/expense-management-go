@@ -25,11 +25,7 @@ jobs:
       run: cp .env.example .env || true
 
     - name: Run
-      run: make run
-
-    - name: Start server in background
-      run: ./bin/server &
-      shell: bash
+      run: make run &
 
     - name: Wait for application to be ready
       run: |
