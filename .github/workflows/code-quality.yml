@@ -11,7 +11,7 @@ env:
 
 jobs:
 
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -24,8 +24,8 @@ jobs:
     - name: Copy .env
       run: cp .env.example .env || true
 
-    - name: Build
-      run: make build
+    - name: Run
+      run: make run
 
     - name: Start server in background
       run: ./bin/server &
