@@ -11,7 +11,63 @@ env:
 
 jobs:
 
+  tidy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ github.actor == 'dependabot[bot]' && github.token || secrets.CODE_QUALITY_ACCESS_TOKEN }}
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ env.GO_VERSION }}
+
+    - name: Tidy code
+      run: make tidy
+
+    - name: Tidy tools
+      run: make tidy-tools
+
+    - name: Commit tidy changes
+      if: github.actor != 'dependabot[bot]'
+      uses: stefanzweifel/git-auto-commit-action@v7
+      with:
+        commit_message: 'tidy: tidy code and tools changes'
+        commit_author: 'GitHub Action <actions@github.com>'
+        commit_user_email: 'action@github.com'
+
+  migrate-validate-fix:
+    needs: tidy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ github.actor == 'dependabot[bot]' && github.token || secrets.CODE_QUALITY_ACCESS_TOKEN }}
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ env.GO_VERSION }}
+
+    - name: Migrate validate
+      run: make migrate-validate
+
+    - name: Migrate fix
+      run: make migrate-fix
+    
+    - name: Commit migrate changes
+      if: github.actor != 'dependabot[bot]'
+      uses: stefanzweifel/git-auto-commit-action@v7
+      with:
+        commit_message: 'migrate-validate-fix: fix migrations'
+        commit_author: 'GitHub Action <actions@github.com>'
+        commit_user_email: 'action@github.com'
+
   format:
+    needs: migrate-validate-fix
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -31,7 +87,7 @@ jobs:
       if: github.actor != 'dependabot[bot]'
       uses: stefanzweifel/git-auto-commit-action@v7
       with:
-        commit_message: 'fmt: format code'
+        commit_message: 'format: format code changes'
         commit_author: 'GitHub Action <actions@github.com>'
         commit_user_email: 'action@github.com'
 
@@ -56,7 +112,7 @@ jobs:
       if: github.actor != 'dependabot[bot]'
       uses: stefanzweifel/git-auto-commit-action@v7
       with:
-        commit_message: 'vet: lint code'
+        commit_message: 'vet: lint code changes'
         commit_author: 'GitHub Action <actions@github.com>'
         commit_user_email: 'action@github.com'
 
