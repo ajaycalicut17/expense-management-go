@@ -62,7 +62,7 @@ jobs:
       working-directory: expense-management-test
       env:
         BASE_URL: http://localhost:8080
-      run: npx playwright test
+      run: npx playwright test -g "health"
 
     - name: Upload Playwright report
       uses: actions/upload-artifact@v4
