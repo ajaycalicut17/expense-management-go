@@ -24,6 +24,8 @@ func main() {
 
 	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
+	mux.HandleFunc("GET /health", handlers.Health)
+
 	mux.HandleFunc("GET /", handlers.IndexLogin)
 
 	mux.HandleFunc("POST /", handlers.Login)
