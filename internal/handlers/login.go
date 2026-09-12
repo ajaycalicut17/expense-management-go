@@ -1,18 +1,13 @@
 package handlers
 
 import (
-	"html/template"
+	pages "ajaycalicut17/expense-management-go/internal/templ/pages/login"
 	"net/http"
 )
 
 func IndexLogin(w http.ResponseWriter, r *http.Request) {
 
-	tmpl := template.Must(template.ParseFiles(
-		"templates/layouts/base.html",
-		"templates/pages/login/index.html",
-	))
-
-	err := tmpl.ExecuteTemplate(w, "login/index", nil)
+	err := pages.IndexLogin().Render(r.Context(), w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
