@@ -1,8 +1,8 @@
-.PHONY: all run build clean fmt vet tidy tidy-tools migrate-validate migrate-fix migrate-up migrate migrate-down migrate-reset air
+.PHONY: all run build clean fmt vet tidy tidy-tools migrate-validate migrate-fix migrate-up migrate migrate-down migrate-reset air templ
 
 TOOLS_MODFILE = -modfile=tools/go.mod
 
-all: fmt vet tidy tidy-tools migrate
+all: templ fmt vet tidy tidy-tools migrate
 
 run:
 	@echo "Running..."
@@ -58,3 +58,7 @@ migrate-reset:
 air:
 	@echo "Air Running..."
 	@go tool $(TOOLS_MODFILE) air -c tools/.air.toml
+
+templ:
+	@echo "Generating templ files..."
+	@go tool $(TOOLS_MODFILE) templ generate
