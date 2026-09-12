@@ -3,24 +3,31 @@ module ajaycalicut17/expense-management-go/tools
 go 1.26.0
 
 tool (
+	github.com/a-h/templ/cmd/templ
 	github.com/air-verse/air
 	github.com/pressly/goose/v3/cmd/goose
 )
 
-require github.com/joho/godotenv v1.5.1
+require (
+	github.com/a-h/templ v0.3.1020
+	github.com/joho/godotenv v1.5.1
+)
 
 require (
 	dario.cat/mergo v1.0.2 // indirect
 	filippo.io/edwards25519 v1.2.0 // indirect
 	github.com/ClickHouse/ch-go v0.73.0 // indirect
 	github.com/ClickHouse/clickhouse-go/v2 v2.47.0 // indirect
+	github.com/a-h/parse v0.0.0-20250122154542-74294addb73e // indirect
 	github.com/air-verse/air v1.67.4 // indirect
 	github.com/andybalholm/brotli v1.2.2 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
 	github.com/bep/godartsass/v2 v2.5.0 // indirect
 	github.com/bep/golibsass v1.2.0 // indirect
 	github.com/bits-and-blooms/bitset v1.24.5 // indirect
+	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
+	github.com/cli/browser v1.3.0 // indirect
 	github.com/coder/websocket v1.8.15 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/elastic/go-sysinfo v1.15.5 // indirect
@@ -48,6 +55,7 @@ require (
 	github.com/mfridman/interpolate v0.0.2 // indirect
 	github.com/mfridman/xflag v0.1.0 // indirect
 	github.com/microsoft/go-mssqldb v1.10.0 // indirect
+	github.com/natefinch/atomic v1.0.1 // indirect
 	github.com/ncruces/go-strftime v1.0.0 // indirect
 	github.com/paulmach/orb v0.13.0 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
@@ -74,10 +82,12 @@ require (
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/crypto v0.54.0 // indirect
 	golang.org/x/exp v0.0.0-20260718201538-764159d718ef // indirect
+	golang.org/x/mod v0.38.0 // indirect
 	golang.org/x/net v0.57.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/text v0.40.0 // indirect
+	golang.org/x/tools v0.48.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260720211330-0afa2a65878a // indirect
 	google.golang.org/grpc v1.82.1 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
