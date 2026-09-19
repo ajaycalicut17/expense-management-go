@@ -5,7 +5,13 @@ import (
 	"net/http"
 )
 
-func IndexRegister(w http.ResponseWriter, r *http.Request) {
+type RegisterHandler struct{}
+
+func NewRegisterHandler() *RegisterHandler {
+	return &RegisterHandler{}
+}
+
+func (RegisterHandler) Index(w http.ResponseWriter, r *http.Request) {
 
 	err := pages.IndexRegister().Render(r.Context(), w)
 	if err != nil {
@@ -14,6 +20,6 @@ func IndexRegister(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func PostRegister(w http.ResponseWriter, r *http.Request) {
+func (RegisterHandler) Register(w http.ResponseWriter, r *http.Request) {
 	// TODO: register
 }

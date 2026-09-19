@@ -27,13 +27,13 @@ func main() {
 	healthHandler := handlers.NewHealthHandler()
 	mux.HandleFunc("GET /health", healthHandler.Health)
 
-	mux.HandleFunc("GET /", handlers.IndexLogin)
+	loginHandler := handlers.NewLoginHandler()
+	mux.HandleFunc("GET /", loginHandler.Index)
+	mux.HandleFunc("POST /", loginHandler.Login)
 
-	mux.HandleFunc("POST /", handlers.Login)
-
-	mux.HandleFunc("GET /register", handlers.IndexRegister)
-
-	mux.HandleFunc("POST /register", handlers.PostRegister)
+	registerHandler := handlers.NewRegisterHandler()
+	mux.HandleFunc("GET /register", registerHandler.Index)
+	mux.HandleFunc("POST /register", registerHandler.Register)
 
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatalf("Server failed to start: %v", err)
