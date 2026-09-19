@@ -32,7 +32,7 @@ func main() {
 
 	mux.HandleFunc("GET /register", handlers.IndexRegister)
 
-	mux.HandleFunc("POST /register", handlers.Register)
+	mux.HandleFunc("POST /register", handlers.PostRegister)
 
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatalf("Server failed to start: %v", err)

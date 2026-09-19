@@ -14,6 +14,6 @@ func IndexRegister(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Register(w http.ResponseWriter, r *http.Request) {
+func PostRegister(w http.ResponseWriter, r *http.Request) {
 	// TODO: register
 }
