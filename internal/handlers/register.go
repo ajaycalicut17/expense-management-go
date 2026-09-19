@@ -21,5 +21,10 @@ func (RegisterHandler) Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func (RegisterHandler) Register(w http.ResponseWriter, r *http.Request) {
-	// TODO: register
+
+	err := pages.FormRegister().Render(r.Context(), w)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
