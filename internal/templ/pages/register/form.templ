@@ -1,7 +1,8 @@
 package pages
 
 templ FormRegister() {
-    <form hx-post="register" hx-swap="outerHTML">
+    <form action="register" method="POST" hx-post="register" hx-swap="outerHTML">
+        // TODO: csrf token
         <input type="hidden" name="_token" value="X15BQZhXzPMREdwz6jYXYgCJGN7bftJfUveAKp9G" autocomplete="off">
         <!-- Name -->
         <div>
