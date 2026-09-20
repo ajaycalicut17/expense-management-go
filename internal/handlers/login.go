@@ -5,7 +5,13 @@ import (
 	"net/http"
 )
 
-func IndexLogin(w http.ResponseWriter, r *http.Request) {
+type LoginHandler struct{}
+
+func NewLoginHandler() *LoginHandler {
+	return &LoginHandler{}
+}
+
+func (LoginHandler) Index(w http.ResponseWriter, r *http.Request) {
 
 	err := pages.IndexLogin().Render(r.Context(), w)
 	if err != nil {
@@ -14,6 +20,6 @@ func IndexLogin(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Login(w http.ResponseWriter, r *http.Request) {
+func (LoginHandler) Login(w http.ResponseWriter, r *http.Request) {
 	// TODO: login
 }
